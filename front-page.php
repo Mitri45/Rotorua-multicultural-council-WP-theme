@@ -11,8 +11,9 @@ namespace WP_Rig\WP_Rig;
 
 get_header();
 
-// Use grid layout if blog index is displayed.
-if ( is_home() ) {
+// Use grid layout if blog index is not displayed.
+if ( ! is_home() ) {
+
 	wp_rig()->print_styles( 'wp-rig-content', 'wp-rig-front-page' );
 } else {
 	wp_rig()->print_styles( 'wp-rig-content' );
@@ -21,7 +22,6 @@ if ( is_home() ) {
 ?>
 	<main id="primary" class="site-main">
 		<?php
-
 		while ( have_posts() ) {
 			the_post();
 

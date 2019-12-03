@@ -2,16 +2,59 @@
  * Custom styles for the front-page.php template.
  */
 
-@media (--sidebar-query) {
+.hero-image > .wp-block-cover__inner-container {
+	position: absolute;
+	top: 16em;
+	overflow: visible;
+}
 
+.hero-image-title {
+	font-size: 2em;
+}
+
+.hero-image {
+	position: relative;
+	overflow: visible;
+}
+
+.what-is-rmc {
+	margin-top: 3em;
+	min-height: min-content;
+}
+
+.has-text-align-left.has-medium-font-size.wnat-is-rmc-p {
+	max-width: 100%;
+	margin-bottom: 0;
+}
+
+.what-is-rmc-button {
+	margin: 1em 0;
+	color: black;
+	box-shadow: 3px 3px black;
+	transition: box-shadow 0.5s;
+}
+
+.what-is-rmc-button:hover {
+	box-shadow: 6px 6px black;
+}
+
+.overflow-header {
+	background-color: #f99f6b;
+	max-width: 6em;
+	margin: 0;
+}
+
+.what-is-rmc > wp-block-cover__inner-container {
+	margin-top: 3em;
+}
+
+@media (--sidebar-query) {
 	.site {
-		margin: 0 1em;
 		display: grid;
 		grid-template-columns: 1fr;
 	}
 
 	.site-main {
-		margin: 2rem 1rem 0;
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
 		grid-auto-flow: dense;
@@ -52,5 +95,27 @@
 		border-top: 1px solid #111;
 		border-bottom: none;
 	}
+}
 
+@media (--smallest-450px) {
+	.hero-image > .wp-block-cover__inner-container {
+		top: 18em;
+	}
+
+	.what-is-rmc {
+		margin-top: 8em;
+	}
+
+	p.hero-image-title {
+		font-size: 8vw;
+		padding: 0;
+	}
+
+	.what-is-rmc {
+		margin-top: 2em;
+	}
+
+	.what-is-rmc > .wp-block-cover__inner-container {
+		width: 90%;
+	}
 }

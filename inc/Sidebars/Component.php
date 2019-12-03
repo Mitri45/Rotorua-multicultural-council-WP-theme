@@ -28,6 +28,7 @@ use function dynamic_sidebar;
 class Component implements Component_Interface, Templating_Component_Interface {
 
 	const PRIMARY_SIDEBAR_SLUG = 'sidebar-1';
+	const HEADER_WIDGETS_SLUG  = 'header-widgets';
 
 	/**
 	 * Gets the unique identifier for the theme component.
@@ -57,6 +58,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		return [
 			'is_primary_sidebar_active' => [ $this, 'is_primary_sidebar_active' ],
 			'display_primary_sidebar'   => [ $this, 'display_primary_sidebar' ],
+			'is_header_widgets_active'  => [ $this, 'is_header_widgets_active' ],
+			'display_header_widgets'    => [ $this, 'display_header_widgets' ],
 		];
 	}
 
@@ -68,6 +71,18 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			[
 				'name'          => esc_html__( 'Sidebar', 'wp-rig' ),
 				'id'            => static::PRIMARY_SIDEBAR_SLUG,
+				'description'   => esc_html__( 'Add widgets here.', 'wp-rig' ),
+				'before_widget' => '<section id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</section>',
+				'before_title'  => '<h2 class="widget-title">',
+				'after_title'   => '</h2>',
+			]
+		);
+
+		register_sidebar(
+			[
+				'name'          => esc_html__( 'Header widgets', 'wp-rig' ),
+				'id'            => static::HEADER_WIDGETS_SLUG,
 				'description'   => esc_html__( 'Add widgets here.', 'wp-rig' ),
 				'before_widget' => '<section id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</section>',
@@ -109,5 +124,21 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 */
 	public function display_primary_sidebar() {
 		dynamic_sidebar( static::PRIMARY_SIDEBAR_SLUG );
+	}
+
+	/**
+	 * Checks whether the header widgetized area is active.
+	 *
+	 * @return bool True if the header widgetized area is active, false otherwise.
+	 */
+	public function is_header_widgets_active() : bool {
+		return (bool) is_active_sidebar( static::HEADER_WIDGETS_SLUG );
+	}
+
+	/**
+	 * Displays the header widgetized area.
+	 */
+	public function display_header_widgets() {
+		dynamic_sidebar( static::HEADER_WIDGETS_SLUG );
 	}
 }

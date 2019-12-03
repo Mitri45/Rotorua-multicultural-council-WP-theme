@@ -310,6 +310,12 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					return 'front-page.php' === basename( $template );
 				},
 			],
+			'wp-rig-header-widgets' => [
+				'file'			   => 'header-widgets.min.css',
+				'preload_callback' => function() {
+					return wp_rig()->is_header_widgets_active();
+				},
+			],
 		];
 
 		/**
@@ -358,7 +364,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 
 		$google_fonts = [
 			'Roboto Condensed' => [ '400', '400i', '700', '700i' ],
+			'Hind' 			   => [ '300', '400', '500', '600', '700' ],
 			'Crimson Text'     => [ '400', '400i', '600', '600i' ],
+			'Bree Serif'       => [ '400' ],
 		];
 
 		/**

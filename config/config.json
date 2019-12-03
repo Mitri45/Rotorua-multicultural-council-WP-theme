@@ -1,8 +1,7 @@
 {
   "theme": {
-    "slug": "rmc",
+    "slug": "rotorua-multicultural-council",
     "name": "Rotorua Multicultural Council Theme",
-    "author": "Dmitrii Bludov",
-    "PHPNamespace": "WP_Rig\\WP_Rig"
+    "author": "Dmitrii Bludov"
   }
 }

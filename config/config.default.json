@@ -8,7 +8,7 @@
   "dev": {
     "browserSync": {
       "live": true,
-      "proxyURL": "wprig.test:8888",
+      "proxyURL": "rmc.local",
       "bypassPort": "8181",
       "https": false
     },
@@ -17,9 +17,7 @@
       "autoprefixer": {
         "grid": false
       },
-      "importFrom": [
-        "_custom-media.css"
-      ],
+      "importFrom": ["_custom-media.css"],
       "features": {
         "custom-media-queries": true,
         "custom-properties": true,
@@ -35,10 +33,6 @@
   "export": {
     "compress": true,
     "generatePotFile": true,
-    "filesToCopy": [
-      "LICENSE",
-      "readme.txt",
-      "screenshot.png"
-    ]
+    "filesToCopy": ["LICENSE", "readme.txt", "screenshot.png"]
   }
 }

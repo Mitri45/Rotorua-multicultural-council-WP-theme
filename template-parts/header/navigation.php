@@ -46,7 +46,7 @@ if ( ! wp_rig()->is_primary_nav_menu_active() ) {
 		}
 		?>
 	>
-		<?php esc_html_e( 'Menu', 'wp-rig' ); ?>
+		<?php esc_html_e( 'Navigation', 'wp-rig' ); ?>
 	</button>
 
 	<div class="primary-menu-container">

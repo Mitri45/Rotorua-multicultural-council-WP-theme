@@ -22,6 +22,7 @@ if ( 'loading' === document.readyState ) {
 function initNavigation() {
 	initNavToggleSubmenus();
 	initNavToggleSmall();
+	allMenuElementsToUppercase();
 }
 
 /**
@@ -39,6 +40,23 @@ function initNavToggleSubmenus() {
 	for ( let i = 0; i < navTOGGLE.length; i++ ) {
 		initEachNavToggleSubmenu( navTOGGLE[ i ] );
 	}
+}
+
+/**
+ * Make all Menu links Uppercase.
+ */
+function allMenuElementsToUppercase() {
+	// Get the elements of menu.
+	const MENUIL = document.querySelectorAll( '.menu li a' );
+
+	// No point if no submenus.
+	if ( ! MENUIL.length ) {
+		return;
+	}
+
+	for ( let i = 0; i < MENUIL.length; i++ ) {
+		MENUIL[ i ].innerText = MENUIL[ i ].innerText.toUpperCase()
+;}
 }
 
 /**

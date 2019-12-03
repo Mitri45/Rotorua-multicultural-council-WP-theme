@@ -72,14 +72,16 @@
 # Layouts
 --------------------------------------------------------------*/
 .site {
-	margin: 0 auto;
+	margin: 0;
 	max-width: 100%;
 }
 
-@media (--sidebar-query) {
+.site-main {
+	margin: 0;
+}
 
+@media (--sidebar-query) {
 	.has-sidebar .site {
-		margin: 0 1em;
 		display: grid;
 		grid-template-columns: 3fr 1fr;
 		grid-gap: 2rem;
@@ -199,7 +201,12 @@ select {
 --------------------------------------------------------------*/
 
 .site-header {
-	padding-bottom: 1em;
+	display: grid;
+	grid-template-columns: 6em 1fr min-content 6em;
+	grid-template-rows: auto;
+	grid-template-areas:
+		"logo title phone widget"
+		"logo links email widget";
 }
 
 .header-image {
@@ -211,24 +218,32 @@ select {
 	margin: 0 auto;
 }
 
+.header-widgets-area {
+	grid-area: widget;
+}
+
 .custom-logo-link {
 	display: inline-block;
-	margin: 0 auto 1em;
+	margin: 0;
+	grid-area: logo;
+}
+
+.custom-logo {
+	width: 5em;
 }
 
 .site-branding {
 	text-align: center;
-	padding: 60px 0 1.75em;
 }
 
 .site-title {
-	margin: 0 1em;
-	font-family: var(--highlight-font-family);
+	margin: 0;
+	font-family: var(--title-font-family);
 	font-stretch: condensed;
-	font-size: 38px;
 	font-weight: 700;
 	line-height: 1.2;
 	color: #333332;
+	grid-area: title;
 }
 
 .site-title a {
@@ -245,6 +260,49 @@ select {
 	line-height: 1.4;
 	word-wrap: break-word;
 	color: #757575;
+}
+
+.hero-image-title {
+	font-weight: 600;
+}
+
+/* Socials widget area*/
+
+.widget.simple-social-icons {
+	align-self: center;
+	margin-bottom: 0;
+}
+
+@media (--narrow-menu-query) {
+	.site-header {
+		display: flex;
+		flex-flow: row wrap;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.site-branding {
+		display: flex;
+		flex: 0 1 min-content;
+		flex-flow: row nowrap;
+		align-items: center;
+		padding: 0.5em 0;
+		justify-content: flex-start;
+	}
+
+	.custom-logo {
+		max-width: 5em;
+	}
+
+	.custom-logo-link {
+		flex: 0 1 min-content;
+	}
+
+	.site-title {
+		flex: 0 1 min-content;
+		text-align: left;
+		font-size: 6vw;
+	}
 }
 
 /*--------------------------------------------------------------
@@ -273,14 +331,12 @@ select {
 }
 
 @media (--narrow-menu-query) {
-
 	.nav--toggle-small.nav--toggled-on .menu {
 		display: block;
 	}
 }
 
 @media (--wide-menu-query) {
-
 	.nav--toggle-small .menu-toggle {
 		display: none;
 	}
@@ -380,14 +436,15 @@ select {
 /*--------------------------------------------------------------
 ## Main navigation menu
 --------------------------------------------------------------*/
+
 .main-navigation {
 	clear: both;
 	display: block;
-	margin: 0 auto 2em;
-	padding: 0 1em;
 	max-width: var(--content-width);
-	font-family: var(--highlight-font-family);
+	font-family: var(--title-font-family);
 	font-stretch: condensed;
+	grid-area: links;
+	justify-self: start;
 }
 
 .main-navigation a {
@@ -415,11 +472,6 @@ select {
 }
 
 @media (--wide-menu-query) {
-
-	.main-navigation ul li a {
-		padding: 0.4em 0.5em;
-	}
-
 	.main-navigation ul li {
 		margin: 0 0 0 0.5em;
 	}
@@ -457,6 +509,29 @@ select {
 	}
 }
 
+@media (--narrow-menu-query) {
+	.main-navigation {
+		margin: 0;
+		padding: 0;
+	}
+
+	.nav--toggle-sub.nav--toggle-small.nav--toggled-on .menu {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+	}
+
+	.menu-item {
+		display: inline-block;
+		text-align: center;
+		padding: 0 0.5em;
+	}
+
+	.menu-item > a {
+		padding: 0.1em 0.5em;
+	}
+}
+
 /*--------------------------------------------------------------
 # Content navigation
 --------------------------------------------------------------*/
@@ -465,7 +540,6 @@ select {
 .site-main .post-navigation,
 .site-main .pagination {
 	border-bottom: 1px solid #111;
-	margin: 0 auto 2em;
 	max-width: var(--content-width);
 	overflow: hidden;
 	padding: 0 1.5rem 2em;
@@ -474,7 +548,6 @@ select {
 }
 
 @media (--content-query) {
-
 	.site-main .comment-navigation,
 	.site-main .posts-navigation,
 	.site-main .post-navigation,
@@ -585,7 +658,6 @@ select {
 .infinite-scroll .posts-navigation,
 .infinite-scroll .pagination,
 .infinite-scroll.neverending .site-footer {
-
 	/* Theme Footer (when set to scrolling) */
 	display: none;
 }
