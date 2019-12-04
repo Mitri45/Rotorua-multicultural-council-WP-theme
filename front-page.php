@@ -11,25 +11,37 @@ namespace WP_Rig\WP_Rig;
 
 get_header();
 
-// Use grid layout if blog index is not displayed.
-if ( ! is_home() ) {
-
-	wp_rig()->print_styles( 'wp-rig-content', 'wp-rig-front-page' );
-} else {
-	wp_rig()->print_styles( 'wp-rig-content' );
-}
+wp_rig()->print_styles( 'wp-rig-front-page' );
 
 ?>
 	<main id="primary" class="site-main">
-		<?php
-		while ( have_posts() ) {
+	<section id="main-hero-image">
+<?php
+	 $args = array(
+		'posts_per_page'   => 3,
+		'category_name'	   => 'news',
+		'orderby'          => 'date',
+		'order'            => 'DESC',
+		'post_type'        => 'post',
+	);
+	$news_posts = get_posts( $args );
+
+	if ( $news_posts ) {
+		while ( have_posts() )
+		{
 			the_post();
-
-			get_template_part( 'template-parts/content/entry', get_post_type() );
+		    the_content();
 		}
+	}
 
-		get_template_part( 'template-parts/content/pagination' );
-		?>
+	if ( have_posts() ) {
+		while ( have_posts() )
+		{
+			the_post();
+		    the_content();
+		}
+	}
+?>
 	</main><!-- #primary -->
 <?php
 get_footer();

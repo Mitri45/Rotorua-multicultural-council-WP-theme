@@ -440,7 +440,6 @@ select {
 .main-navigation {
 	clear: both;
 	display: block;
-	max-width: var(--content-width);
 	font-family: var(--title-font-family);
 	font-stretch: condensed;
 	grid-area: links;
