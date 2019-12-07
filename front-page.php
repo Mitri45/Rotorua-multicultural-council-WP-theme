@@ -17,30 +17,7 @@ wp_rig()->print_styles( 'wp-rig-front-page' );
 	<main id="primary" class="site-main">
 	<section id="main-hero-image">
 <?php
-	 $args = array(
-		'posts_per_page'   => 3,
-		'category_name'	   => 'news',
-		'orderby'          => 'date',
-		'order'            => 'DESC',
-		'post_type'        => 'post',
-	);
-	$news_posts = get_posts( $args );
-
-	if ( $news_posts ) {
-		while ( have_posts() )
-		{
-			the_post();
-		    the_content();
-		}
-	}
-
-	if ( have_posts() ) {
-		while ( have_posts() )
-		{
-			the_post();
-		    the_content();
-		}
-	}
+	get_template_part ('template-parts/content/entry_news');
 ?>
 	</main><!-- #primary -->
 <?php

@@ -316,6 +316,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					return wp_rig()->is_header_widgets_active();
 				},
 			],
+			'wp-rig-news' => [
+				'file'			   => 'news-posts.min.css',
+			],
 		];
 
 		/**
