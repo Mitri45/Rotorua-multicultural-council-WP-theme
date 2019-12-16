@@ -4,12 +4,13 @@
 
 .hero-image > .wp-block-cover__inner-container {
 	position: absolute;
-	top: 16em;
+	bottom: -3em;
 	overflow: visible;
 }
 
 .hero-image-title {
 	font-size: 2em;
+	font-weight: 600;
 }
 
 .hero-image {
@@ -98,10 +99,6 @@
 }
 
 @media (--smallest-450px) {
-	.hero-image > .wp-block-cover__inner-container {
-		top: 18em;
-	}
-
 	.what-is-rmc {
 		margin-top: 8em;
 	}

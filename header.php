@@ -38,6 +38,7 @@ namespace WP_Rig\WP_Rig;
 	<header id="masthead" class="site-header">
 		<?php get_template_part( 'template-parts/header/custom_header' ); ?>
 		<?php get_template_part( 'template-parts/header/branding' ); ?>
-		<?php get_template_part( 'template-parts/header/navigation' ); ?>
 		<?php get_template_part( 'template-parts/header/header-widgets' ); ?>
+		<?php get_template_part( 'template-parts/header/navigation' ); ?>
+
 	</header><!-- #masthead -->

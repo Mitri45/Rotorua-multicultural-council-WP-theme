@@ -202,20 +202,11 @@ select {
 
 .site-header {
 	display: grid;
-	grid-template-columns: 6em 1fr min-content 6em;
+	grid-template-columns: 15% 3fr 1fr;
 	grid-template-rows: auto;
 	grid-template-areas:
-		"logo title phone widget"
-		"logo links email widget";
-}
-
-.header-image {
-	margin: 0 auto;
-}
-
-.header-image img {
-	display: block;
-	margin: 0 auto;
+		"logo title widget"
+		"logo nav widget";
 }
 
 .header-widgets-area {
@@ -223,27 +214,22 @@ select {
 }
 
 .custom-logo-link {
-	display: inline-block;
-	margin: 0;
 	grid-area: logo;
-}
-
-.custom-logo {
 	width: 5em;
-}
-
-.site-branding {
-	text-align: center;
+	margin: 0;
+	align-self: center;
+	justify-self: center;
 }
 
 .site-title {
+	grid-area: title;
 	margin: 0;
+	align-self: center;
 	font-family: var(--title-font-family);
 	font-stretch: condensed;
 	font-weight: 700;
-	line-height: 1.2;
-	color: #333332;
-	grid-area: title;
+	line-height: 1;
+	color: var(--color-theme-black);
 }
 
 .site-title a {
@@ -262,59 +248,39 @@ select {
 	color: #757575;
 }
 
-.hero-image-title {
-	font-weight: 600;
-}
-
-/* Socials widget area*/
-
-.widget.simple-social-icons {
-	align-self: center;
-	margin-bottom: 0;
-}
-
 @media (--narrow-menu-query) {
 	.site-header {
-		display: flex;
-		flex-flow: row wrap;
-		align-items: center;
-		justify-content: space-around;
-	}
-
-	.site-branding {
-		display: flex;
-		flex: 0 1 min-content;
-		flex-flow: row nowrap;
-		align-items: center;
-		padding: 0.5em 0;
-		justify-content: flex-start;
-	}
-
-	.custom-logo {
-		max-width: 5em;
+		display: grid;
+		grid-template-columns: 25% 1fr 1fr;
+		grid-template-rows: auto;
+		grid-template-areas:
+			"logo title title"
+			"widget widget widget"
+			"nav nav nav";
 	}
 
 	.custom-logo-link {
-		flex: 0 1 min-content;
+		grid-area: logo;
 	}
 
 	.site-title {
-		flex: 0 1 min-content;
-		text-align: left;
-		font-size: 6vw;
+		grid-area: title;
+	}
+
+	.header-widgets-area {
+		grid-area: widget;
 	}
 }
-
 /*--------------------------------------------------------------
 ## Basic navigation menus - handles submenu and small screen toggle
 --------------------------------------------------------------*/
 .nav--toggle-small .menu-toggle {
 	display: block;
-	margin: 1.2em auto;
+	margin: 0.5em auto;
 	padding: 0.6em 1.2em 0.5em;
 	font-family: var(--highlight-font-family);
 	font-stretch: condensed;
-	font-size: 80%;
+	font-size: 1em;
 	text-transform: uppercase;
 	border: 2px solid #000;
 	border-radius: 0;
@@ -438,20 +404,17 @@ select {
 --------------------------------------------------------------*/
 
 .main-navigation {
-	clear: both;
-	display: block;
+	grid-area: nav;
 	font-family: var(--title-font-family);
 	font-stretch: condensed;
-	grid-area: links;
 	justify-self: start;
 }
 
 .main-navigation a {
 	display: block;
-	width: 100%;
-	padding: 0.5em 1em 0.5em 0;
+	padding: 0.3em 0.5em 0.3em 0;
 	text-decoration: none;
-	color: #000;
+	color: var(--color-theme-black);
 }
 
 .main-navigation a:hover,
@@ -472,11 +435,7 @@ select {
 
 @media (--wide-menu-query) {
 	.main-navigation ul li {
-		margin: 0 0 0 0.5em;
-	}
-
-	.main-navigation ul li:first-child {
-		margin-left: 0;
+		margin-right: 0.5em;
 	}
 
 	.main-navigation ul ul a {
@@ -504,14 +463,14 @@ select {
 	.main-navigation .menu {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: center;
+		justify-content: flex-start;
 	}
 }
 
 @media (--narrow-menu-query) {
 	.main-navigation {
-		margin: 0;
-		padding: 0;
+		grid-area: nav;
+		justify-self: center;
 	}
 
 	.nav--toggle-sub.nav--toggle-small.nav--toggled-on .menu {

@@ -13,10 +13,20 @@ get_header();
 
 wp_rig()->print_styles( 'wp-rig-front-page' );
 
+
+
+
 ?>
 	<main id="primary" class="site-main">
 	<section id="main-hero-image">
 <?php
+	if ( have_posts() ) {
+		while ( have_posts() ) {
+			the_post();
+			the_content();
+		}
+	}
+
 	get_template_part ('template-parts/content/entry_news');
 ?>
 	</main><!-- #primary -->
