@@ -95,11 +95,10 @@ class Component implements Component_Interface, Templating_Component_Interface {
 
 	public function display_news_posts() {
 		printf(
-			'<h2 class="news-posts-header">%s</h2>
-			<aside class="news-posts">
-			<div class="news-posts-spinner">
-			</div>
-			</aside>', esc_html( 'Latest news: ', 'wp-rig' )
+			'<aside class="news-posts">
+			<h2 class="news-posts-header">%s</h2>
+
+			</aside>', esc_html( 'Latest news ', 'wp-rig' )
 		);
 
 	}

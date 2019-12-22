@@ -1,6 +1,6 @@
 <?php
 /**
- * Template part for displaying the header navigation menu
+ * Template part for displaying the header widget
  *
  * @package wp_rig
  */

@@ -18,7 +18,6 @@ function getFeaturedImage( postObject ) {
 		return '';
 	}
 	const featuredObject = postObject._embedded[ 'wp:featuredmedia' ][ 0 ];
-	console.log( featuredObject );
 	const imgWidth = featuredObject.media_details.sizes.large.width;
 	const imgHeight = featuredObject.media_details.sizes.large.height;
 
@@ -37,24 +36,22 @@ function thePost( postObject ) {
 	// Create a div with class "news-post" to populate.
 	const postElement = document.createElement( 'div' );
 	postElement.className = 'news-post';
-
+	console.log( postObject );
 	// Turn the date into something meaningful.
 	const date = new Date( postObject.date );
 
 	// HTML template for the post.
 	const postContent = `
-<a href="${ postObject.link }">
 	${ getFeaturedImage( postObject ) }
+	<div class="news-post__meta">
+	Published <time class="entry-date published" datetime="${ date }">${ date.toDateString() }</time>
+</div>
 	<h3 class="news-post__title">
 		${ postObject.title.rendered }
 	</h3>
-	<div class="news-post__meta">
-		Published <time class="entry-date published" datetime="${ date }">${ date.toDateString() }</time>
-	</div>
-	<p class="news-post__excerpt">
-		${ postObject.excerpt.rendered }
-	</p>
-</a>`;
+
+	${ postObject.excerpt.rendered }
+	<div class="wp-block-button alignright news-details"><a class="wp-block-button__link has-text-color has-theme-black-color has-background no-border-radius" href="${ postObject.link }">DETAILS</a></div>`;
 
 	// Put the HTML template into the postElement div.
 	postElement.innerHTML = postContent;
@@ -69,31 +66,19 @@ function displayNewsPosts( data ) {
 	data.forEach( function( postObject ) {
 		newsContainer.append( thePost( postObject ) );
 	} );
+	const postButton = document.createElement( 'div' );
+	postButton.className = 'wp-block-button all-news-button';
+	const allEventsButton = `<a class="wp-block-button__link has-text-color has-theme-black-color has-background no-border-radius" href="/news">SEE ALL NEWS</a>`;
+	postButton.innerHTML = allEventsButton;
+	newsContainer.append( postButton );
 }
 
 // Fetch the query results from WP REST API.
 function sendRESTquery() {
 	fetch( queryURL )
 		.then( ( response ) => response.json() )
-		.then( ( data ) => displayNewsPosts( data ) )
-		.then( document.querySelector( '.news-posts-spinner' ).remove() );
+		.then( ( data ) => displayNewsPosts( data ) );
 }
 
-//Trigger only when Latest news section area comes into view
-window.addEventListener(
-	'load',
-	function( event ) {
-		const observer = new IntersectionObserver( function( entries, self ) {
-			entries.forEach( ( entry ) => {
-				if ( entry.isIntersecting ) {
-					sendRESTquery();
+sendRESTquery();
 
-					// Disconnect IntersectionObsever after first reveal
-					self.disconnect();
-				}
-			} );
-		} );
-		observer.observe( document.querySelector( ' .news-posts ' ) );
-	},
-	false
-);

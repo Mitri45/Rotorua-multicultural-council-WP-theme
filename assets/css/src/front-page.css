@@ -2,10 +2,22 @@
  * Custom styles for the front-page.php template.
  */
 
+.site-main {
+	display: grid;
+	grid-template-rows: auto;
+	grid-template-columns: 100%;
+	grid-auto-flow: row;
+	grid-row-gap: 3em;
+}
+
 .hero-image > .wp-block-cover__inner-container {
 	position: absolute;
 	bottom: -3em;
 	overflow: visible;
+}
+
+.wp-block-cover__inner-container.hero-image-title-container {
+	width: auto;
 }
 
 .hero-image-title {
@@ -18,31 +30,56 @@
 	overflow: visible;
 }
 
+.hero-image div {
+	max-width: 70%;
+}
+
+.what-is-rmc-container {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+}
+
 .what-is-rmc {
-	margin-top: 3em;
 	min-height: min-content;
+	overflow: visible;
+}
+
+.what-is-rmc-p {
+	font-size: 1.5em;
 }
 
 .has-text-align-left.has-medium-font-size.wnat-is-rmc-p {
-	max-width: 100%;
-	margin-bottom: 0;
+	max-width: 80%;
 }
 
 .what-is-rmc-button {
-	margin: 1em 0;
 	color: black;
-	box-shadow: 3px 3px black;
-	transition: box-shadow 0.5s;
+	align-self: center;
+	flex: 1 0 auto;
 }
 
-.what-is-rmc-button:hover {
+.what-is-rmc-button a {
+	margin: 1em 0 0.3em 0;
+	box-shadow: 3px 3px black;
+	transition: box-shadow 0.3s;
+	font-size: 1em;
+}
+
+.what-is-rmc-button a:hover {
 	box-shadow: 6px 6px black;
 }
 
 .overflow-header {
 	background-color: #f99f6b;
 	max-width: 6em;
-	margin: 0;
+	text-align: center;
+	font-size: 1.5em;
+	color: black;
+	position: relative;
+	top: -50px;
+	flex: 1 0 auto;
+	height: min-content;
 }
 
 .what-is-rmc > wp-block-cover__inner-container {
@@ -50,18 +87,6 @@
 }
 
 @media (--sidebar-query) {
-	.site {
-		display: grid;
-		grid-template-columns: 1fr;
-	}
-
-	.site-main {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
-		grid-auto-flow: dense;
-		grid-gap: 2rem;
-	}
-
 	.post {
 		margin-bottom: 0;
 		padding: 0 2rem;
@@ -99,20 +124,57 @@
 }
 
 @media (--smallest-450px) {
-	.what-is-rmc {
-		margin-top: 8em;
-	}
-
 	p.hero-image-title {
 		font-size: 8vw;
 		padding: 0;
 	}
 
-	.what-is-rmc {
-		margin-top: 2em;
-	}
-
 	.what-is-rmc > .wp-block-cover__inner-container {
 		width: 90%;
+		margin: 0;
+	}
+
+	.site-main {
+		grid-row-gap: 2em;
+	}
+
+	.what-is-rmc {
+		flex-flow: column nowrap;
+	}
+
+	.what-is-rmc-container {
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+	}
+
+	.what-is-rmc {
+		min-height: min-content;
+		overflow: visible;
+	}
+
+	.what-is-rmc-p {
+		font-size: 1.5em;
+	}
+
+	.has-text-align-left.has-medium-font-size.wnat-is-rmc-p {
+		max-width: 80%;
+	}
+
+	.what-is-rmc-button {
+		color: black;
+		align-self: center;
+		flex: 1 0 auto;
+	}
+
+	.what-is-rmc-button a {
+		margin: 1em 0 0.3em 0;
+		box-shadow: 3px 3px black;
+		transition: box-shadow 0.3s;
+		font-size: 1em;
+	}
+
+	.what-is-rmc-button a:hover {
+		box-shadow: 6px 6px black;
 	}
 }

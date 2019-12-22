@@ -1,0 +1,60 @@
+/*--------------------------------------------------------------
+# Styles for footer widgetized area
+--------------------------------------------------------------*/
+.header-widgets-area {
+	grid-area: widget;
+	align-self: center;
+}
+
+/* Socials widget area*/
+
+.rmc_social_links {
+	align-self: center;
+	margin-bottom: 0;
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	grid-template-rows: auto;
+	grid-template-areas:
+		"phone socials"
+		"email socials";
+	align-items: center;
+	justify-items: center;
+}
+
+.social-widget-phone {
+	grid-area: phone;
+	margin: 0 0.2em 0 0;
+}
+
+.social-widget-email {
+	grid-area: email;
+	margin: 0 0.2em 0 0;
+}
+
+.social-links-wrap {
+	grid-area: socials;
+	align-self: center;
+	justify-self: center;
+}
+
+.facebook-icon {
+	min-width: 32px;
+}
+
+.instagram-icon {
+	min-width: 32px;
+}
+
+.facebook-icon:hover,
+.instagram-icon:hover {
+	fill: #0d569d;
+}
+
+.widgets-email {
+	text-decoration: none;
+	color: var(--color-theme-black);
+}
+
+.widgets-email:hover {
+	color: #0d569d;
+}

@@ -29,6 +29,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 
 	const PRIMARY_SIDEBAR_SLUG = 'sidebar-1';
 	const HEADER_WIDGETS_SLUG  = 'header-widgets';
+	const FOOTER_WIDGETS_SLUG  = 'footer-widgets';
 
 	/**
 	 * Gets the unique identifier for the theme component.
@@ -60,6 +61,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			'display_primary_sidebar'   => [ $this, 'display_primary_sidebar' ],
 			'is_header_widgets_active'  => [ $this, 'is_header_widgets_active' ],
 			'display_header_widgets'    => [ $this, 'display_header_widgets' ],
+			'is_footer_widgets_active'  => [ $this, 'is_footer_widgets_active' ],
+			'display_footer_widgets'    => [ $this, 'display_footer_widgets' ],
 		];
 	}
 
@@ -83,6 +86,18 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			[
 				'name'          => esc_html__( 'Header widgets', 'wp-rig' ),
 				'id'            => static::HEADER_WIDGETS_SLUG,
+				'description'   => esc_html__( 'Add widgets here.', 'wp-rig' ),
+				'before_widget' => '<section id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</section>',
+				'before_title'  => '<h2 class="widget-title">',
+				'after_title'   => '</h2>',
+			]
+		);
+
+		register_sidebar(
+			[
+				'name'          => esc_html__( 'Footer widgets', 'wp-rig' ),
+				'id'            => static::FOOTER_WIDGETS_SLUG,
 				'description'   => esc_html__( 'Add widgets here.', 'wp-rig' ),
 				'before_widget' => '<section id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</section>',
@@ -140,5 +155,21 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 */
 	public function display_header_widgets() {
 		dynamic_sidebar( static::HEADER_WIDGETS_SLUG );
+	}
+
+	/**
+	 * Checks whether the footer widgetized area is active.
+	 *
+	 * @return bool True if the footer widgetized area is active, false otherwise.
+	 */
+	public function is_footer_widgets_active() : bool {
+		return (bool) is_active_sidebar( static::FOOTER_WIDGETS_SLUG );
+	}
+
+	/**
+	 * Displays the footer widgetized area.
+	 */
+	public function display_footer_widgets() {
+		dynamic_sidebar( static::FOOTER_WIDGETS_SLUG );
 	}
 }

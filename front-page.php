@@ -12,13 +12,14 @@ namespace WP_Rig\WP_Rig;
 get_header();
 
 wp_rig()->print_styles( 'wp-rig-front-page' );
+wp_rig()->print_styles( 'wp-rig-events' );
 
 
 
 
 ?>
 	<main id="primary" class="site-main">
-	<section id="main-hero-image">
+
 <?php
 	if ( have_posts() ) {
 		while ( have_posts() ) {

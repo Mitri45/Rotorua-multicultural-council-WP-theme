@@ -312,8 +312,17 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					return wp_rig()->is_header_widgets_active();
 				},
 			],
+			'wp-rig-footer-widgets' => [
+				'file'			   => 'footer-widgets.min.css',
+				'preload_callback' => function() {
+					return wp_rig()->is_footer_widgets_active();
+				},
+			],
 			'wp-rig-news' => [
 				'file'			   => 'news-posts.min.css',
+			],
+			'wp-rig-events' => [
+				'file'			   => 'events-post.min.css',
 			],
 		];
 
