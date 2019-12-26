@@ -9,7 +9,7 @@ const catId = postdata.cat_id;
 const restURL = postdata.rest_url;
 
 // Create query URL for the REST API. Note &_embed=true at the end which brings in featured images.
-const queryURL = `${ restURL }posts?per_page=3&categories=${ catId }&_embed=true`;
+const queryURL = `${ restURL }posts?per_page=2&categories=${ catId }&_embed=true`;
 
 // Get the featured image if there is a featured image.
 function getFeaturedImage( postObject ) {
@@ -18,12 +18,12 @@ function getFeaturedImage( postObject ) {
 		return '';
 	}
 	const featuredObject = postObject._embedded[ 'wp:featuredmedia' ][ 0 ];
-	const imgWidth = featuredObject.media_details.sizes.large.width;
-	const imgHeight = featuredObject.media_details.sizes.large.height;
+	const imgWidth = featuredObject.media_details.sizes.full.width;
+	const imgHeight = featuredObject.media_details.sizes.full.height;
 
 	return `
 	<figure class="news-post__image">
-		<img src="${ featuredObject.media_details.sizes.large.source_url }"
+		<img src="${ featuredObject.media_details.sizes.full.source_url }"
 			 'width="${ imgWidth }"
 			 'height="${ imgHeight }"
 			 'alt="" ' +
@@ -62,13 +62,12 @@ function thePost( postObject ) {
 // Find the .news-posts container and loop through the data to populate it.
 function displayNewsPosts( data ) {
 	const newsContainer = document.querySelector( '.news-posts' );
-
 	data.forEach( function( postObject ) {
 		newsContainer.append( thePost( postObject ) );
 	} );
 	const postButton = document.createElement( 'div' );
 	postButton.className = 'wp-block-button all-news-button';
-	const allEventsButton = `<a class="wp-block-button__link has-text-color has-theme-black-color has-background no-border-radius" href="/news">SEE ALL NEWS</a>`;
+	const allEventsButton = `<a class="wp-block-button__link has-text-color has-theme-black-color has-background no-border-radius" href="/category/news/">SEE ALL NEWS</a>`;
 	postButton.innerHTML = allEventsButton;
 	newsContainer.append( postButton );
 }

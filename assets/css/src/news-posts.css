@@ -1,4 +1,8 @@
 /* Styles for News Posts feature. */
+.news-page-title {
+	font-size: 1.8em;
+	text-align: center;
+}
 
 .news-posts {
 	background-color: #0d569d;
@@ -34,6 +38,7 @@
 	border-radius: 10px;
 	padding: 1em;
 	color: white;
+	justify-content: space-between;
 }
 
 .news-post a:focus > .related-post__title,
@@ -95,7 +100,8 @@
 		margin: 0 2em;
 	}
 
-	.news-post__title {
+	.news-post__title,
+	.news-page-title {
 		text-align: center;
 	}
 }
