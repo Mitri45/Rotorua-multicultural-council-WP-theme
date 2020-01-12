@@ -47,6 +47,7 @@
 
 .what-is-rmc-p {
 	font-size: 1.5em;
+	padding: 0 1em 0 1em;
 }
 
 .has-text-align-left.has-medium-font-size.wnat-is-rmc-p {
@@ -80,6 +81,7 @@
 	top: -50px;
 	flex: 1 0 auto;
 	height: min-content;
+	padding: 0.5em 0;
 }
 
 .what-is-rmc > wp-block-cover__inner-container {
@@ -154,6 +156,9 @@
 
 	.what-is-rmc-p {
 		font-size: 1.5em;
+		margin-top: 0;
+		text-align: center;
+		padding: 0;
 	}
 
 	.has-text-align-left.has-medium-font-size.wnat-is-rmc-p {
@@ -167,7 +172,7 @@
 	}
 
 	.what-is-rmc-button a {
-		margin: 1em 0 0.3em 0;
+		margin: 0.5em 0 0.5em 0;
 		box-shadow: 3px 3px black;
 		transition: box-shadow 0.3s;
 		font-size: 1em;
@@ -175,5 +180,9 @@
 
 	.what-is-rmc-button a:hover {
 		box-shadow: 6px 6px black;
+	}
+
+	.overflow-header {
+		margin-bottom: 0;
 	}
 }

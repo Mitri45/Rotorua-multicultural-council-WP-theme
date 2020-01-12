@@ -20,6 +20,7 @@
 	top: -20px;
 	left: 50px;
 	margin: 0;
+	padding: 0.5em 0;
 }
 
 .event-title {
@@ -96,10 +97,17 @@
 	}
 
 	.event-title {
+		text-align: center;
 		margin-bottom: 0.3em;
 	}
 
 	.events-card {
 		margin: 0 2em;
+	}
+}
+
+@media (--smallest-450px) {
+	.event-text {
+		text-align: center;
 	}
 }
