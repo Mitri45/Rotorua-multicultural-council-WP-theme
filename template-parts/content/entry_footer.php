@@ -16,3 +16,5 @@ namespace WP_Rig\WP_Rig;
 
 get_template_part( 'template-parts/content/entry_actions', get_post_type() ); ?>
 </footer><!-- .entry-footer -->
+</article>
+

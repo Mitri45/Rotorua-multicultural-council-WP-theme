@@ -68,14 +68,16 @@ if ( ! empty( $post->post_parent ) && 'attachment' === get_post_type() ) {
 		<?php
 	}
 
+	/* AUTHOR script
+
 	if ( ! empty( $author_string ) ) {
 		?>
 		<span class="posted-by">
 			<?php
-			/* translators: %s: post author */
+			// translators: %s: post author
 			$author_byline = _x( 'By %s', 'post author', 'wp-rig' );
 			if ( ! empty( $time_string ) ) {
-				/* translators: %s: post author */
+			// translators: %s: post author
 				$author_byline = _x( 'by %s', 'post author', 'wp-rig' );
 			}
 			printf(
@@ -86,6 +88,7 @@ if ( ! empty( $post->post_parent ) && 'attachment' === get_post_type() ) {
 		</span>
 		<?php
 	}
+*/
 
 	if ( ! empty( $parent_string ) ) {
 		?>

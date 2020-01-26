@@ -153,6 +153,7 @@ class Theme {
 			new Customizer\Component(),
 			new Styles\Component(),
 			new News_Posts\Component(),
+			new Events_Calendar\Component(),
 		];
 
 		if ( defined( 'JETPACK__VERSION' ) ) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Custom Page Template
+ * Template Name: News Template
  *
  * When active, by adding the heading above and providing a custom name
  * this template becomes available in a drop-down panel in the editor.
@@ -21,8 +21,9 @@ wp_rig()->print_styles( 'wp-rig-news' );
 
 
 ?>
+<h2 class="news-page-title"> News from Rotorua Multicultural Council </h2>
 	<main id="primary" class="site-main">
-	<h2 class="news-page-title"> News from Rotorua Multicultural Council </h2>
+
 		<?php
 		while ( have_posts() ) {
 

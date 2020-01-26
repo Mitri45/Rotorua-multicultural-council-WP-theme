@@ -321,6 +321,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			'wp-rig-news' => [
 				'file'			   => 'news-posts.min.css',
 			],
+			'wp-rig-events-calendar' => [
+				'file'			   => 'events-calendar.min.css',
+			],
 			'wp-rig-events' => [
 				'file'			   => 'events-post.min.css',
 			],
