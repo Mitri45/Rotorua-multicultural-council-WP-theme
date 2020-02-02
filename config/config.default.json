@@ -8,7 +8,7 @@
   "dev": {
     "browserSync": {
       "live": true,
-      "proxyURL": "rmc.local",
+      "proxyURL": "http://rotomc.local/",
       "bypassPort": "8181",
       "https": false
     },
@@ -26,7 +26,7 @@
     },
     "debug": {
       "styles": false,
-      "scripts": false,
+      "scripts": true,
       "phpcs": true
     }
   },

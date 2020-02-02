@@ -9,6 +9,8 @@ const currentDate = new Date();
 let fetchedAPIData = {};
 let currentYear = currentDate.getFullYear();
 let currentMonth = currentDate.getMonth();
+const eventDetailsSideBar = document.body.querySelector( '.events' );
+const titleOfEventsDetails = '<h2 class="events-details__title"> Events list </h2> <p class="placeholder"> Click event date for details...</p>';
 
 //Formatting current currentMonth variable to Internationalized naming
 
@@ -18,7 +20,6 @@ const currentMonthInt = new Intl.DateTimeFormat( 'en-US', { month: 'long' } ).fo
 
 const calendarYearMonth = document.body.querySelector( '.calendar-month-year' );
 const calendarDays = document.body.querySelector( '.calendar-days' );
-const eventDetailsSideBar = document.body.querySelector( '.events' );
 
 //Place current Year and Internationalized Month name in the title of the calendar
 
@@ -61,7 +62,7 @@ const nextMonthButton = document.getElementById( 'calendar-next-month' );
 const previousMonthButton = document.getElementById( 'calendar-previous-month' );
 
 //Next month click event listener
-nextMonthButton.addEventListener( 'click', function( event ) {
+nextMonthButton.addEventListener( 'click', function() {
 	//Activate previous month button
 	previousMonthButton.removeAttribute( 'disabled' );
 
@@ -81,10 +82,11 @@ nextMonthButton.addEventListener( 'click', function( event ) {
 	//Set new Year/Month in title of calendar
 	const currentMonthInt = new Intl.DateTimeFormat( 'en-US', { month: 'long' } ).format( alteredMonth );
 	calendarYearMonth.innerHTML = `<strong>${ currentMonthInt }</strong> ${ currentYear }`;
+	eventDetailsSideBar.innerHTML = titleOfEventsDetails;
 	populateEventDates( fetchedAPIData );
 } );
 
-previousMonthButton.addEventListener( 'click', function( event ) {
+previousMonthButton.addEventListener( 'click', function( ) {
 	if ( currentMonth === 0 ) {
 		currentMonth = 11;
 		currentYear--;
@@ -102,6 +104,7 @@ previousMonthButton.addEventListener( 'click', function( event ) {
 	if ( initialDate.getMonth() == currentMonth && initialDate.getFullYear() == currentYear ) {
 		previousMonthButton.setAttribute( 'disabled', '' );
 	}
+	eventDetailsSideBar.innerHTML = titleOfEventsDetails;
 	populateEventDates( fetchedAPIData );
 } );
 
@@ -134,46 +137,68 @@ function compareMonthYear() {
 	}
 }
 
-/* Generate HTML for individual news post. */
+/* Generate HTML for individual events post. */
 function populateEventDates( eventsArray ) {
+	//array with all events for current month,year
 	const calendarEvents = [];
-	// Create a div with class "news-post" to populate.
-	//const postElement = document.createElement( 'div' );
-	//postElement.className = 'news-post';
-	// Turn the date into something meaningful.
+	//Loop through API events data and populate events array with events for current month,year
 	for ( let i = 0; i < eventsArray.length; i++ ) {
 		const eventDate = new Date( eventsArray[ i ].meta.event_date[ 0 ] );
-		if ( eventDate.getMonth() == currentMonth && eventDate.getFullYear() == currentYear ) {
+		if ( eventDate.getMonth() === currentMonth && eventDate.getFullYear() === currentYear ) {
 			calendarEvents.push( eventsArray[ i ] );
 		}
 	}
+	//select calendar html element to populate with events
 	const calendarEventDayElement = document.querySelector( '.calendar-days' );
-	for ( let i = 0; i < calendarEvents.length; i++ ) {
-		let calendarEventDay = new Date( calendarEvents[ i ].meta.event_date[ 0 ] );
-		calendarEventDay = calendarEventDay.getDate();
-		const calendarNodes = calendarEventDayElement.childNodes;
-		for ( const eachNode in calendarNodes ) {
-			const calendarNode = calendarNodes[ eachNode ];
-			if ( ( calendarNode.innerText ) == calendarEventDay ) {
-				calendarNode.classList.add( 'calendar-day-have-event' );
-				calendarNode.addEventListener( 'click', function() {
-					calendarNode.style.backgroundColor = 'blue';
+	//get all <p> nodes of calendar div into array by spreading nodes
+	const calendarNodes = [ ...calendarEventDayElement.childNodes ];
 
-					//	HTML template for the event.
-					const eventContent = `
-						${ getFeaturedImage( calendarEvents[ i ] ) }
-						<div class="event-details">
-						<p> Day ${ calendarEventDay } </p>
-						<h3 class="news-post__title">
-							${ calendarEvents[ i ].title.rendered }
-						</h3>
-					${ calendarEvents[ i ].content.rendered }`;
+	//loop through current events array
+	for ( let k = 0; k < calendarEvents.length; k++ ) {
+		//get date of event element in events array
+		const calendarEventDay = new Date( calendarEvents[ k ].meta.event_date[ 0 ] );
+		//	calendarEventDay = calendarEventDay.getDate();
+		//Make new array by filtering days that equals to current event date
+		const filteredDayElementArray = calendarNodes.filter( ( day ) => day.innerText == calendarEventDay.getDate() );
+		//Add classes to that element for future purposes
 
-					//	Put the HTML Event Detail template into the ".events" div.
-					eventDetailsSideBar.innerHTML = eventContent;
-				} );
+		const eventDotSpan = document.createElement( 'span' );
+		eventDotSpan.classList.add( `event-red-dot-${ k }` );
+
+		filteredDayElementArray[ 0 ].classList.add( 'calendar-day-have-event' );
+		filteredDayElementArray[ 0 ].style.fontWeight = ( 'bold' );
+		filteredDayElementArray[ 0 ].append( eventDotSpan );
+
+		//HTML template for the event.
+		const divForEvent = document.createElement( 'div' );
+		divForEvent.classList.add( `eventDay-${ calendarEventDay.getDate() }` );
+		divForEvent.style.display = ( 'none' );
+		const eventContent = `
+					<h3 class="events-post__title">
+					${ calendarEvents[ k ].title.rendered }
+					</h3>
+					${ getFeaturedImage( calendarEvents[ k ] ) }
+					<div class="event-details">
+					<p> Date: ${ new Intl.DateTimeFormat( 'en-GB' ).format( calendarEventDay ) } </p>
+					<p> Time: ${ calendarEvents[ k ].meta.event_time[ 0 ] } </p>
+
+				${ calendarEvents[ k ].content.rendered }`;
+		divForEvent.innerHTML = eventContent;
+		eventDetailsSideBar.append( divForEvent );
+		//Put the HTML Event Detail template into the ".events" div.
+		filteredDayElementArray[ 0 ].addEventListener( 'click', function() {
+			const placeholderInTitle = document.querySelector( '.placeholder' );
+			placeholderInTitle.style.display = ( 'none' );
+			const allEventsElements = document.querySelectorAll( '[class^="eventDay-"]' );
+			for ( const event of allEventsElements ) {
+				event.style.display = ( 'none' );
 			}
-		}
+
+			const eventsToShow = document.getElementsByClassName( `eventDay-${ calendarEventDay.getDate() }` );
+			for ( let i = 0; i < eventsToShow.length; i++ ) {
+				eventsToShow[ i ].style.display = ( 'initial' );
+			}
+		} );
 	}
 }
 
@@ -188,4 +213,5 @@ function sendRESTquery() {
 		);
 }
 
+eventDetailsSideBar.innerHTML = titleOfEventsDetails;
 sendRESTquery();

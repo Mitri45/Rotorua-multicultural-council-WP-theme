@@ -84,5 +84,31 @@ button:hover {
 
 .calendar-day-have-event {
 	cursor: pointer;
+	position: relative;
+}
+
+span[class^="event-red-dot"] {
+	width: 10px;
+	height: 10px;
 	background-color: red;
+	z-index: 9999;
+	border-radius: 50%;
+	position: absolute;
+	top: 10%;
+	right: 10%;
+	display: inline-block;
+}
+
+.event-details__image {
+	max-height: 300px;
+	margin: 0 auto;
+}
+
+.events-post__title {
+	text-align: center;
+}
+
+.events-details__title {
+	margin: 0;
+	text-align: center;
 }

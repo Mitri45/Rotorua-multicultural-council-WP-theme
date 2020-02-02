@@ -11,7 +11,6 @@ use WP_Rig\WP_Rig\Component_Interface;
 use WP_Rig\WP_Rig\Templating_Component_Interface;
 use function WP_Rig\WP_Rig\wp_rig;
 use function add_action;
-use function get_cat_ID;
 use function wp_enqueue_script;
 use function get_theme_file_uri;
 use function get_theme_file_path;
@@ -118,7 +117,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			<div class="calendar-days"></div>
 			</div>
 			<div class="events">
-			<h2>Events</h2></div>
+			</div>
 		  </div>' , esc_html( 'Events calendar ', 'wp-rig' )
 		);
 

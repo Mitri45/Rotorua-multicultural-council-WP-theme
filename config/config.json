@@ -3,5 +3,12 @@
     "slug": "rotorua-multicultural-council",
     "name": "Rotorua Multicultural Council Theme",
     "author": "Dmitrii Bludov"
+  },
+  "dev": {
+    "debug": {
+      "styles": false,
+      "scripts": true,
+      "phpcs": true
+    }
   }
 }

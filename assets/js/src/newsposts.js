@@ -33,7 +33,6 @@ function getFeaturedImage( postObject ) {
 
 /* Generate HTML for individual news post. */
 function thePost( postObject ) {
-	debugger;
 	// Create a div with class "news-post" to populate.
 	const postElement = document.createElement( 'div' );
 	postElement.className = 'news-post';
