@@ -27,3 +27,7 @@ a:hover,
 a:active {
 	outline: 0;
 }
+
+.wp-block-button__link {
+	padding: 12px 12px;
+}

@@ -11,7 +11,8 @@
 
 .events-title {
 	grid-area: 1 / 1 / 2 / 4;
-	background-color: #f99f6b;
+	background-color: #94c2f0;
+	box-shadow: 4px 6px #494242;
 	max-width: 9em;
 	text-align: center;
 	font-size: 1.5em;
@@ -26,8 +27,9 @@
 .event-title {
 	font-weight: 600;
 	line-height: 113.6%;
-	font-size: 2em;
+	font-size: 1em;
 	margin: 0.4em 0;
+	text-align: center;
 }
 
 .event-title a {
@@ -64,7 +66,7 @@
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
-	margin: 0 5em;
+	margin: 0 2em;
 	border: 1px solid white;
 	border-radius: 10px;
 	padding: 1em;
@@ -73,7 +75,7 @@
 
 .event-text {
 	color: white;
-	font-size: 1.3em;
+	font-size: 1em;
 }
 
 .events-img {

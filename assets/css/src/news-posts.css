@@ -13,7 +13,8 @@
 
 .news-posts-header {
 	grid-area: 1 / 1 / 2 / 4;
-	background-color: #f99f6b;
+	background-color: #94c2f0;
+	box-shadow: 4px 6px #494242;
 	max-width: 9em;
 	text-align: center;
 	font-size: 1.5em;
@@ -34,7 +35,7 @@
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
-	margin: 1em 5em;
+	margin: 1em 2em;
 	border: 1px solid white;
 	border-radius: 10px;
 	padding: 1em;
@@ -78,11 +79,11 @@
 }
 
 .news-post__image {
-	height: 400px;
+	max-height: 400px;
 }
 
-.news-post__image>img {
-	height: 400px;
+.news-post__image > img {
+	max-height: 400px;
 }
 
 @media (--narrow-menu-query) {

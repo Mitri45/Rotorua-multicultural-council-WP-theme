@@ -160,14 +160,16 @@ function populateEventDates( eventsArray ) {
 		//	calendarEventDay = calendarEventDay.getDate();
 		//Make new array by filtering days that equals to current event date
 		const filteredDayElementArray = calendarNodes.filter( ( day ) => day.innerText == calendarEventDay.getDate() );
+
 		//Add classes to that element for future purposes
 
-		const eventDotSpan = document.createElement( 'span' );
-		eventDotSpan.classList.add( `event-red-dot-${ k }` );
+		// const eventDotSpan = document.createElement( 'span' );
+		// eventDotSpan.classList.add( `event-red-dot-${ k }` );
 
 		filteredDayElementArray[ 0 ].classList.add( 'calendar-day-have-event' );
 		filteredDayElementArray[ 0 ].style.fontWeight = ( 'bold' );
-		filteredDayElementArray[ 0 ].append( eventDotSpan );
+		//	filteredDayElementArray[ 0 ].style.backgroundColor = ( '#b7eeff' );
+		// filteredDayElementArray[ 0 ].append( eventDotSpan );
 
 		//HTML template for the event.
 		const divForEvent = document.createElement( 'div' );
@@ -187,6 +189,11 @@ function populateEventDates( eventsArray ) {
 		eventDetailsSideBar.append( divForEvent );
 		//Put the HTML Event Detail template into the ".events" div.
 		filteredDayElementArray[ 0 ].addEventListener( 'click', function() {
+			const allCalendarEventsDates = document.querySelectorAll( '.calendar-day-have-event' );
+			for ( const eventDay of allCalendarEventsDates ) {
+				eventDay.style.backgroundColor = ( '#b7eeff' );
+			}
+			filteredDayElementArray[ 0 ].style.backgroundColor = ( '#20c5fa' );
 			const placeholderInTitle = document.querySelector( '.placeholder' );
 			placeholderInTitle.style.display = ( 'none' );
 			const allEventsElements = document.querySelectorAll( '[class^="eventDay-"]' );
@@ -197,6 +204,12 @@ function populateEventDates( eventsArray ) {
 			const eventsToShow = document.getElementsByClassName( `eventDay-${ calendarEventDay.getDate() }` );
 			for ( let i = 0; i < eventsToShow.length; i++ ) {
 				eventsToShow[ i ].style.display = ( 'initial' );
+			}
+
+			const windowCurrentWidth = window.innerWidth;
+			if ( windowCurrentWidth < 992 ) {
+				const eventsTitle = document.querySelector( '.events-details__title' );
+				eventsTitle.scrollIntoView( { behavior: 'smooth', block: 'center' } );
 			}
 		} );
 	}

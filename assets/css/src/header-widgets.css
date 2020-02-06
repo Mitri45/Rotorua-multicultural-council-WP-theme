@@ -4,6 +4,7 @@
 .header-widgets-area {
 	grid-area: widget;
 	align-self: center;
+	margin: 0 1em;
 }
 
 /* Socials widget area*/
@@ -24,11 +25,13 @@
 .social-widget-phone {
 	grid-area: phone;
 	margin: 0 0.2em 0 0;
+	justify-self: start;
 }
 
 .social-widget-email {
 	grid-area: email;
 	margin: 0 0.2em 0 0;
+	justify-self: start;
 }
 
 .social-links-wrap {

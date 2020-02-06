@@ -95,7 +95,6 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	public function display_events_calendar() {
 		printf(
 			'
-			<h2 class="events-calendar-header">%s</h2>
 			<div class="calendar-wrapper">
 			<div class="calendar">
 			<div class="calendar-month-year-wrapper">
@@ -118,7 +117,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			</div>
 			<div class="events">
 			</div>
-		  </div>' , esc_html( 'Events calendar ', 'wp-rig' )
+		  </div>'
 		);
 
 	}
